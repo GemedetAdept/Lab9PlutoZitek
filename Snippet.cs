@@ -1,6 +1,6 @@
 public class Snippet {
 
-	public static void Break () {
+	public static void LineBreak () {
 
 		string lineBreak = "";
 		Console.WriteLine(lineBreak);
