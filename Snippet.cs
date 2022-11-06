@@ -9,7 +9,7 @@ public class Snippet {
 
 	public static void Note (object tempMessage) {
 
-		tempMessage = tempMessage.ToString();
+		tempMessage = tempMessage.ToString()!;
 		Console.WriteLine($"* {tempMessage} *");
 	}
 }
