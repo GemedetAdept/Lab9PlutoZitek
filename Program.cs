@@ -4,7 +4,7 @@
 
 // --------------------------------------------------------
 
-enum ItemStatus {
+public enum ItemStatus {
 
 	Incomplete,
 	Complete,
