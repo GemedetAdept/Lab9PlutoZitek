@@ -4,46 +4,55 @@
 
 * [0.0] Main Menu Options
 	[0.1]- Create new item
-	[0.2]- View Incomplete items
-	[0.3]- View Complete items
-	[0.4]- View Incomplete & Complete items
-	[0.5]- View program stats
-	[0.6]- Exit program
+	[0.2]- View list of items
+	[0.3]- View program stats [?]
+	[0.4]- Exit program
 
 * [1.0] Item Creation
 	- Input name
 		>> (If blank, name = "Untitled")
+
 	- Input start time (*optional*)
 		>> (If blank, time = Current time)
+
 	- Input description
 		>> (If blank, description = "Description of item.")
 
 	- [1.1]- Create another item
+
 	- [1.2]- View items
 
-* [2.0] List, Incomplete Items
-	) Item 01
+* [2.0] List, Items
+
+	(Incomplete) Item 01
 		| Name |
 		| Start Time |
 		| Description |
 
-* [2.0] Options, Incomplete Items
-	- Edit item
-	- Delete item
-	- Copy item
-	- Paste copied item
-	- Mark Complete
-
-* [3.0] List, Complete Items
-	) Item 01
+	(Complete) Item 01
 		| Name |
 		| Start Time |
 		| End Time |
 		| Description |
 
-* [3.0] Options, Complete Items
+* [2.0] Options, Items
 	- Edit item
 	- Delete item
-	- Copy item
-	- Paste copied item
+	- Copy item [?]
+	- Paste copied item [?]
+	- Mark Complete
 	- Mark Incomplete
+
+// -------------------------------------------------------------------------------
+// *Optional, if there is extra time*
+
+* [3.0] Program & Item Stats
+	- Total # of items
+	- Total # of Incomplete
+	- Total # of Complete
+	- Percentage of Incomplete
+	- Percentage of Complete
+	- Timestamp of last stats update
+	- Program runtime
+		-- Timestamp of startup
+		-- Current elapsed time
