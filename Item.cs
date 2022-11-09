@@ -1,12 +1,10 @@
 public class Item {
 
-	public static (string, DateTime, string, ItemStatus) Incomplete(string itemName, DateTime startTime, string itemDescription) {
+	public static (string, DateTime, string, ItemStatus) Incomplete(string itemName, DateTime startTime, string itemDescription, ItemStatus status) {
 
 		string name = itemName;
 		DateTime start = startTime;
 		string description = itemDescription;
-
-		ItemStatus status = ItemStatus.Incomplete;
 
 		(string, DateTime, string, ItemStatus) dataIncomplete = (name, start, description, status);
 		return dataIncomplete;
