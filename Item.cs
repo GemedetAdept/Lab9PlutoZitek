@@ -1,32 +1,26 @@
 public class Item {
 
-	public string name;
-	public DateTime start;
-	public DateTime end;
-	public string description;
-	public ItemStatus status;
+	public static (string, DateTime, string, ItemStatus) Incomplete(string itemName, DateTime startTime, string itemDescription) {
 
-	public (string, DateTime, string, ItemStatus) Incomplete(string itemName, DateTime startTime, string itemDescription) {
+		string name = itemName;
+		DateTime start = startTime;
+		string description = itemDescription;
 
-		name = itemName;
-		start = startTime;
-		description = description;
-
-		status = ItemStatus.Incomplete;
+		ItemStatus status = ItemStatus.Incomplete;
 
 		(string, DateTime, string, ItemStatus) dataIncomplete = (name, start, description, status);
 		return dataIncomplete;
 	}
 
-	public (string, DateTime, DateTime, string, ItemStatus) Complete(string itemName, DateTime startTime, DateTime endTime, string itemDescription) {
+	public static (string, DateTime, DateTime, string, ItemStatus) Complete(string itemName, DateTime startTime, DateTime endTime, string itemDescription) {
 
 
-		name = itemName;
-		start = startTime;
-		end = endTime
-		description = description;
+		string name = itemName;
+		DateTime start = startTime;
+		DateTime end = endTime;
+		string description = itemDescription;
 
-		status = ItemStatus.Complete;
+		ItemStatus status = ItemStatus.Complete;
 
 		(string, DateTime, DateTime, string, ItemStatus) dataComplete = (name, start, end, description, status);
 		return dataComplete;
