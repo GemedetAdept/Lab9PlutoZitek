@@ -1,9 +1,12 @@
-﻿// Pluto Zitek - Lab 9, "Listen and Learn"
+﻿using Microsoft.VisualBasic;
+using System.Text;
+
+// Pluto Zitek - Lab 9, "Listen and Learn"
 
 int activeItem = 0;
 
-List<(string, DateTime, string, ItemStatus)> IncompleteItems = new List<(string, DateTime, string, ItemStatus)>();
-List<(string, DateTime, DateTime, string, ItemStatus)> CompleteItems = new List<(string, DateTime, DateTime, string, ItemStatus)>();
+List<(string, DateTime, string, ItemStatus)> incompleteItems = new List<(string, DateTime, string, ItemStatus)>();
+List<(string, DateTime, DateTime, string, ItemStatus)> completeItems = new List<(string, DateTime, DateTime, string, ItemStatus)>();
 
 string[] mainMenuOptions = new string[] {
 
@@ -51,16 +54,17 @@ void mainMenu() {
 
 			case ConsoleKey.Enter:
 
-				switch(mainMenuOptions[activeItem]) {				
+				switch(activeItem) {				
 					
-					case mainMenuOptions[0]: 
+					case 0:
 						var newItem = createNewItem();
-						Console.WriteLine(newItem);
-
+						incompleteItems.Add(newItem);
 						break;
 
-					case mainMenuOptions[1]:
-						
+					case 1:
+						displayItems();
+						break;
+				}
 
 				break;
 
@@ -166,7 +170,52 @@ mainMenu();
 
 void displayItems() {
 
-	
+	Console.OutputEncoding = Encoding.Unicode;
+
+	// Section header
+	string headerText = "  Current To-Do Items  ";
+	int headerCenter = (Console.WindowWidth - headerText.Length)/2;
+	string displayHeader = new string(' ', headerCenter);
+
+	Console.WriteLine(displayHeader + headerText);
+	Console.WriteLine(displayHeader + new string(Strings.ChrW(Strings.AscW('▔')), headerText.Length));
+	Snippet.LineBreak();
+
+	// Incomplete Items
+	string headerIncomplete = "[ Incomplete Items ] :";
+	Console.WriteLine(headerIncomplete);
+	Console.WriteLine(new string(Strings.ChrW(Strings.AscW('▔')), headerIncomplete.Length));
+
+	for (int i = 0; i < incompleteItems.Count(); i++) {
+
+		Console.WriteLine($"[{(i+1):00}] {incompleteItems[i]}");
+	}
+
+	Snippet.LineBreak();
+
+	// Complete Items
+	string headerCncomplete = "[ Complete Items ] :";
+	Console.WriteLine(headerComplete);
+	Console.WriteLine(new string(Strings.ChrW(Strings.AscW('▔')), headerComplete.Length));
+
+	for (int i = 0; i < completeItems.Count(); i++) {
+
+		Console.WriteLine(completeItems[i]);
+	}
+
+	Snippet.LineBreak();
+
+	// -------------------------------------------------------------------------------
+
+	Console.WriteLine(@"Type item number to mark as complete 
+		OR 
+		Press [Esc] to return to menu");
+
+	Console.Write("> ");
+	int userInput = int.Parse(Console.ReadLine());
+
+	userInput => (incompleteItems[userInput].Item4 = ItemStatus.Complete)
+
 }
 
 
