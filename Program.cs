@@ -2,6 +2,9 @@
 
 int activeItem = 0;
 
+List<(string, DateTime, string, ItemStatus)> IncompleteItems = new List<(string, DateTime, string, ItemStatus)>();
+List<(string, DateTime, DateTime, string, ItemStatus)> CompleteItems = new List<(string, DateTime, DateTime, string, ItemStatus)>();
+
 string[] mainMenuOptions = new string[] {
 
 	"Create new item", "View list of items", "Exit program"
@@ -48,11 +51,17 @@ void mainMenu() {
 
 			case ConsoleKey.Enter:
 
-				if (mainMenuOptions[activeItem] == mainMenuOptions[0]) {
+				switch(mainMenuOptions[activeItem]) {				
+					
+					case mainMenuOptions[0]: 
+						var newItem = createNewItem();
+						Console.WriteLine(newItem);
 
-					menuBool = false;
-					createNewItem();
-				}
+						break;
+
+					case mainMenuOptions[1]:
+						
+
 				break;
 
 			default:
@@ -93,8 +102,8 @@ mainMenu();
 		Console.WriteLine("Confirm inputted item details?");
 		Snippet.LineBreak();
 
-		Console.WriteLine(newItem);
-		Snippet.LineBreak();
+		// Console.WriteLine(newItem);
+		// Snippet.LineBreak();
 
 		string[] confirmOptions = new string[] {
 
@@ -113,7 +122,6 @@ mainMenu();
 		}
 
 		var keyInput = Console.ReadKey(true).Key;
-		Console.WriteLine(keyInput);
 
 		switch(keyInput) {
 
@@ -154,6 +162,14 @@ mainMenu();
 	return newItem;
 
 }
+
+
+void displayItems() {
+
+	
+}
+
+
 
 // DateTime now = DateTime.Now;
 // var tempTuple = Item.Incomplete("Lorem ipsum", now, "An interesting description.");
