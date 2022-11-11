@@ -10,15 +10,13 @@ public class Item {
 		return dataIncomplete;
 	}
 
-	public static (string, DateTime, DateTime, string, ItemStatus) Complete(string itemName, DateTime startTime, DateTime endTime, string itemDescription) {
+	public static (string, DateTime, DateTime, string, ItemStatus) Complete(string itemName, DateTime startTime, DateTime endTime, string itemDescription, ItemStatus status) {
 
 
 		string name = itemName;
 		DateTime start = startTime;
 		DateTime end = endTime;
 		string description = itemDescription;
-
-		ItemStatus status = ItemStatus.Complete;
 
 		(string, DateTime, DateTime, string, ItemStatus) dataComplete = (name, start, end, description, status);
 		return dataComplete;

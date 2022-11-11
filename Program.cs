@@ -20,7 +20,6 @@ void mainMenu() {
 	while(menuBool) {
 
 		Console.Clear();
-		Snippet.LineBreak();
 		Console.WriteLine("--- To-Do || !To-Do ---");
 
 		for (int i = 0; i < mainMenuOptions.Length; i++) {
@@ -36,7 +35,6 @@ void mainMenu() {
 
 		// Provides option selection via arrow keys and Enter for a more satisfying feel
 		var keyInput = Console.ReadKey(true).Key;
-		Console.WriteLine(keyInput);
 
 		switch(keyInput) {
 
@@ -63,6 +61,13 @@ void mainMenu() {
 
 					case 1:
 						displayItems();
+						break;
+
+					case 2:
+						Environment.Exit(0);
+						break;
+
+					default:
 						break;
 				}
 
@@ -170,6 +175,8 @@ mainMenu();
 
 void displayItems() {
 
+	Console.Clear();
+
 	Console.OutputEncoding = Encoding.Unicode;
 
 	// Section header
@@ -194,7 +201,7 @@ void displayItems() {
 	Snippet.LineBreak();
 
 	// Complete Items
-	string headerCncomplete = "[ Complete Items ] :";
+	string headerComplete = "[ Complete Items ] :";
 	Console.WriteLine(headerComplete);
 	Console.WriteLine(new string(Strings.ChrW(Strings.AscW('▔')), headerComplete.Length));
 
@@ -207,14 +214,37 @@ void displayItems() {
 
 	// -------------------------------------------------------------------------------
 
-	Console.WriteLine(@"Type item number to mark as complete 
-		OR 
-		Press [Esc] to return to menu");
+	Console.WriteLine(@"Type item number to mark as complete OR Press [Enter] to return to menu");
 
 	Console.Write("> ");
-	int userInput = int.Parse(Console.ReadLine());
+	var userInput = Console.ReadLine();
 
-	userInput => (incompleteItems[userInput].Item4 = ItemStatus.Complete)
+	int choiceIndex = 0;
+	bool intCheck = int.TryParse(userInput, out choiceIndex);
+	if (intCheck) {
+
+		if (choiceIndex > incompleteItems.Count()) {
+
+			Console.WriteLine($"Item [{userInput:00}] does not exist.");
+			Console.Write("Press any key to continue...");
+
+			Console.ReadKey();
+			displayItems();
+		}
+
+		else {
+
+			choiceIndex -= 1;
+
+			DateTime done = DateTime.Now;
+			var itemData = incompleteItems[choiceIndex];
+			completeItems.Add(Item.Complete(itemData.Item1, itemData.Item2, done, itemData.Item3, ItemStatus.Complete));
+			incompleteItems.Remove(itemData);
+		}
+
+	}
+
+	mainMenu();
 
 }
 
